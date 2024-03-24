@@ -23,11 +23,11 @@ Exploiting Log4Shell/CVE-2021-44228 vulnerability based on app provided, "vulnap
 
 
 
-## Task 2
+# Task 2
 
 The challenge involved a binary with a vulnerability in the way it handled heap-allocated variables. The objective was to manipulate the heap to overwrite a specific variable (`safe_var`) with the string "ACMR". Upon success, the program would display the contents of "flag.txt".
 
-# Environment Setup
+## Environment Setup
 
 Operating system: Ubuntu 22.04.3 LTS
 
