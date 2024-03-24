@@ -1,4 +1,4 @@
-### Tasks
+# Tasks
 
 Solutions and instructions to reproduce of provided tasks.
 
@@ -23,15 +23,15 @@ Exploiting Log4Shell/CVE-2021-44228 vulnerability based on app provided, "vulnap
 
 
 
-# Task 2
+## Task 2
 
 The challenge involved a binary with a vulnerability in the way it handled heap-allocated variables. The objective was to manipulate the heap to overwrite a specific variable (`safe_var`) with the string "ACMR". Upon success, the program would display the contents of "flag.txt".
 
-## Environment Setup
+### Environment Setup
 
 Operating system: Ubuntu 22.04.3 LTS
 
-## Approach and Solution
+### Approach and Solution
 
 The solution involved a carefully crafted input to a buffer (`input_data`) that when written to, would overflow and overwrite the adjacent `safe_var` on the heap.
 
@@ -56,17 +56,17 @@ Through analysis, it was clear that writing 32 characters to `input_data` follow
 
 5. **Print the Flag**: The option to print the flag was selected, which successfully displayed the contents of the flag due to the correct value in `safe_var`.
 
-## Result
+### Result
 
 Using the payload `XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXACMR`, the heap overflow was successful, and the flag `acm_ftw` was printed as expected.
 
-## Tools Used
+### Tools Used
 
 - Decompilation software (e.g., Ghidra, IDA Pro) for analyzing the binary.
 - A text editor to craft the payload.
 - Terminal to interact with the binary program.
 
-## Lessons Learned
+### Lessons Learned
 
 This challenge was an excellent demonstration of a heap overflow vulnerability and underscored the importance of bounds checking in programs. It also showed the power of manual analysis in understanding and manipulating memory in a controlled manner.
 
