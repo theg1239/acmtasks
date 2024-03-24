@@ -1,4 +1,4 @@
-![image](https://github.com/theg1239/tasks/assets/52027622/596246cf-d3e8-4814-9430-65f9b737a151)### Tasks
+### Tasks
 
 Solutions and instructions to reproduce of provided tasks.
 
